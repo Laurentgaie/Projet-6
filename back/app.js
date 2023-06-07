@@ -4,13 +4,14 @@ const bodyParser = require('body-parser');
 const saucesRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 const path = require('path');
+const dotenv = require('dotenv').config();
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require("helmet");
 const app = express();
 
 
 // Connexion à mongoose:
-mongoose.connect('mongodb+srv://laurentgaie:Marinou01@cluster0.ebnmhef.mongodb.net/?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/?retryWrites=true&w=majority',
     { useNewUrlParser: true,
      useUnifiedTopology: true 
     })
